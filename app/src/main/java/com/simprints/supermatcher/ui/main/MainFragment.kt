@@ -2,6 +2,7 @@ package com.simprints.supermatcher.ui.main
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.simprints.supermatcher.R
@@ -17,11 +18,12 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     private val viewModel: MainViewModel = MainViewModel()
 
+    lateinit var message: TextView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        message = view.findViewById(R.id.message)
         viewModel.matchCandidateAgainstOthers(
-            arguments!!.getParcelable("candidate")!!,
+            requireArguments().getParcelable("candidate")!!,
             this@MainFragment
         )
     }
